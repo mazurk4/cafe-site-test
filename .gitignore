@@ -1,0 +1,9 @@
+# パスワードなどを書く設定ファイル(GitHubに上げない)
+.env
+.env.*
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

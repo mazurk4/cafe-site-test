@@ -1,0 +1,9 @@
+services:
+  web:
+    # 静的なサイト(HTML/CSS)を表示するだけのWebサーバー
+    image: nginx:1.30-alpine
+    ports:
+      - "127.0.0.1:8087:80"
+    volumes:
+      # public フォルダの中身を、そのまま公開する
+      - ./public:/usr/share/nginx/html:ro
