@@ -1,0 +1,18 @@
+// Cloudflare Workers の設定(ハンズオン①)
+// cafe-site のフォルダの一番上(public と同じ場所)に置く
+{
+  // Worker の名前。URL の一部になる(cafe-site.〇〇.workers.dev)
+  // Cloudflare の画面で付ける名前と、同じにすること
+  "name": "cafe-site",
+
+  // public にない URL に来たとき、動かすプログラム
+  "main": "src/index.js",
+
+  // どの時点の Workers の動きに合わせるか(日付で決める)
+  "compatibility_date": "2026-10-01",
+
+  // そのまま配るファイルの置き場所(第9回の Pages と同じ public)
+  "assets": {
+    "directory": "./public"
+  }
+}
