@@ -1,0 +1,36 @@
+.reserve {
+  display: grid;
+  gap: 12px;
+}
+
+.reserve input,
+.reserve select,
+.reserve button {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #d8cfc2;
+  border-radius: 6px;
+}
+
+.reserve button {
+  color: #fff;
+  background: #5b7f4f;
+  border: none;
+  cursor: pointer;
+}
+
+#result {
+  font-weight: bold;
+  color: #5b7f4f;
+}
+
+#result.error {
+  color: #b3412e;
+}
+
+.practice {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background: #f3efe8;
+  border-radius: 6px;
+}

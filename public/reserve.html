@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>席のご予約 | 喫茶こもれび</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reserve.css">
+</head>
+<body>
+  <header>
+    <h1>喫茶こもれび</h1>
+    <p class="catch">席のご予約</p>
+  </header>
+
+  <main>
+    <p class="practice">これは授業の練習用のサイトです。実在するお店ではありません。予約の内容は保存しません。</p>
+
+    <section>
+      <h2>ご予約について</h2>
+      <ul>
+        <li>30日先まで、ご予約いただけます</li>
+        <li>1回のご予約で、6名さままでです</li>
+        <li>水曜日は定休日です</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>ご予約フォーム</h2>
+      <form id="reserve-form" class="reserve">
+        <input type="text" name="nickname" placeholder="ニックネーム(本名は入れない)" maxlength="20" required>
+
+        <input type="date" name="date" required>
+
+        <select name="time">
+          <option>10:00</option>
+          <option>13:00</option>
+          <option>16:00</option>
+        </select>
+
+        <select name="people">
+          <option value="1">1名</option>
+          <option value="2">2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+          <option value="5">5名</option>
+          <option value="6">6名</option>
+        </select>
+
+        <button type="submit">予約の内容を確かめる</button>
+      </form>
+      <p id="result" role="status"></p>
+    </section>
+
+    <p><a href="index.html">トップページへ戻る</a></p>
+  </main>
+
+  <footer>
+    <p>&copy; 喫茶こもれび</p>
+  </footer>
+
+  <script src="reserve.js"></script>
+</body>
+</html>
