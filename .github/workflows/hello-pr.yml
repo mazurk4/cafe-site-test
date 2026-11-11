@@ -8,4 +8,5 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "PR のタイトル: ${{ github.event.pull_request.title }}"
+      - run: |
+          echo "PR のタイトル: ${{ github.event.pull_request.title }}"
