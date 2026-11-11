@@ -1,0 +1,12 @@
+# ワークフローで使っている部品が古くなったら、更新の PR を作ってもらう(第11回)
+# 第9回の dependabot.yml に、cooldown を足したもの
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # 出たばかりの版には、すぐ飛びつかない(7日待つ)
+    # 乗っ取られた版は、たいてい数時間〜数日で見つかって消されるため
+    cooldown:
+      default-days: 7
