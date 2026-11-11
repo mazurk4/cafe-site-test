@@ -1,0 +1,55 @@
+# 本番に届けるワークフロー(第11回)
+# main に入ったら、テストして、合格したときだけ GitHub Pages に公開する
+name: deploy
+
+# いつ動かすか
+on:
+  push:
+    branches: [main]
+  # Actions タブのボタンからも動かせる(やり直したいとき)
+  workflow_dispatch:
+
+# 全体は「読むだけ」。公開に要る権限は、deploy のジョブにだけ渡す
+permissions:
+  contents: read
+
+# 公開は1つずつ順番に。途中の公開は止めない
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # テストして、合格したら公開するファイルを荷物にまとめる
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # 取ってきたあと、GitHub の鍵をマシンに残さない
+          persist-credentials: false
+
+      - run: node --test --test-reporter=spec
+
+      # ※ この部品は、わざと古い版にしてある(ハンズオン②で Dependabot に直してもらう)
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+
+      # 公開するのは public の中だけ
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: public
+
+  # build が合格したときだけ動く
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pages: write     # Pages に公開する
+      id-token: write  # 「本物の GitHub Actions から来た」と証明する
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
