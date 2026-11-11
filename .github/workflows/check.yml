@@ -1,0 +1,22 @@
+# サイトのチェック(第9回)
+name: site-check
+
+# いつ動かすか
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# このワークフローに渡す権限(読むだけ)
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # リポジトリの中身を取ってくる(バージョンはコミットの ID で固定している)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - run: node --test --test-reporter=spec
