@@ -1,0 +1,11 @@
+# 危ない例(第11回のクイズ用。マージしない)
+name: hello-pr
+on:
+  pull_request_target:
+permissions:
+  contents: read
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR のタイトル: ${{ github.event.pull_request.title }}"
